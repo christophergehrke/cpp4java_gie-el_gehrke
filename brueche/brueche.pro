@@ -3,7 +3,8 @@ CONFIG += console
 CONFIG -= qt
 
 SOURCES += \
-    rationalnumber.cpp
+    rationalnumber.cpp \
+    testRN.cpp
 
 HEADERS += \
     rationalnumber.h
