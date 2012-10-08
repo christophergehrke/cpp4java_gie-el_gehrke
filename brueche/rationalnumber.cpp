@@ -27,16 +27,7 @@ int rnAdd( ){
 
 }
 
-int main()
-{
 
-    cout << "Hello World!" << endl;
-    cout <<  rnIsValid(number1) << endl;
-    cout << rnEqual(number1, number2) << endl;
-    cout << rnLessThan(number1, number2) << endl;
-
-    return 0;
-}
 
 
 
