@@ -2,17 +2,21 @@
 #define RATIONALNUMBER_H
 
 struct RationalNumber {
-    int numerator;
+    int nominator;
     int denominator;
-
 };
 
-bool rnIsValid (RationalNumber n);
-bool rnEqual ();
-bool rnLessThan ();
-int rnAdd();
-int rnSubtract();
-int rnMultiply();
-int rnDivide();
+bool rnIsValid(RationalNumber);
+bool rnIsNotNull(RationalNumber);
+bool rnEqual(RationalNumber, RationalNumber);
+bool rnLessThan(RationalNumber, RationalNumber);
+RationalNumber rnAdd(RationalNumber,RationalNumber);
+RationalNumber rnSubtract(RationalNumber,RationalNumber);
+RationalNumber rnMultiply(RationalNumber,RationalNumber);
+RationalNumber rnDivide(RationalNumber,RationalNumber);
+
+void printRN(RationalNumber);
 
 #endif // RATIONALNUMBER_H
+
+
