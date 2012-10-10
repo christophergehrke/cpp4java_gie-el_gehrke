@@ -17,11 +17,10 @@ bool rnIsNotNull(RationalNumber n){
 }
 
 bool rnLessThan(RationalNumber n1, RationalNumber n2){
-
     printf("rnLessThan \n");
     if(!rnIsValid(n1) && !rnIsValid(n2))return false;
     if(rnIsNotNull(n1) || rnIsNotNull(n2)) return false;
-    if(rnEqual(n1,n2))return false;
+    if(rnEqual(n1,n2)) return false;
 
     int ggT1 = ggT(max(n1.nominator,n1.denominator),min(n1.nominator,n1.denominator));
     int ggT2 = ggT(max(n2.nominator,n2.denominator),min(n2.nominator,n2.denominator));
@@ -40,8 +39,7 @@ bool rnLessThan(RationalNumber n1, RationalNumber n2){
 
 bool rnEqual(RationalNumber n1, RationalNumber n2){
 
-    //printf("rnEqual \n");
-
+    printf("rnEqual \n");
     if(rnIsNotNull(n1) || rnIsNotNull(n2)) return false;
     if(!rnIsValid(n1) && !rnIsValid(n2))return false;
 
