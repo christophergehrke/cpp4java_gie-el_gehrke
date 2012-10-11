@@ -192,23 +192,19 @@ void rncSort(RationalNumberCollection *c, int len) {
     // Zeiger auf Collection
     RationalNumber (*ptr)[2] = c->rn;
 
-    // Anzahl der Brüche in Collection ermitteln
-    int rnCount = 0;
-    for (int i=0; i<len; i++) {
-        if(ptr[i][1].numerator > 0) {
-            rnCount++;
-        }
-    }
-
     // Zeiger auf temporäre Collection
     RationalNumber (*tempptr)[2] = temp.rn;
+
+    // Variablen zum Speichern von Indexpositionen
     int tempIndex = 0;
+    int minIndex = 0;
 
     // Solange sich Brüche in der Collection c befinden
-    while (rnCount > 0) {
+    while (minIndex != -1) {
+
+        minIndex = -1;
 
         // Suche kleinsten Bruch aus der Collection c
-        int minIndex = -1;
         int minCount;
         for (int i=0; i<len; i++) {
             if (ptr[i][1].numerator == 0) {
@@ -220,20 +216,23 @@ void rncSort(RationalNumberCollection *c, int len) {
             }
         }
 
-        // Übertrage den gefunden kleinsten Bruch und dessen Vorkommen in die Collection temp
-        tempptr[tempIndex][0] = ptr[minIndex][0];
-        tempptr[tempIndex][1].numerator = minCount;
+        // Wenn kleinsten Bruch gefunden
+        if (minIndex != -1) {
 
-        // Entferne den gefunden kleinsten Bruch und dessen Vorkommen aus der Collection c
-        ptr[minIndex][0].numerator = 0;
-        ptr[minIndex][0].denominator = 0;
-        ptr[minIndex][1].numerator = 0;
+            // Übertrage den gefunden kleinsten Bruch und dessen Vorkommen in die Collection temp
+            tempptr[tempIndex][0] = ptr[minIndex][0];
+            tempptr[tempIndex][1].numerator = minCount;
 
-        // Zeige auf den nächsten Index der Collection temp
-        tempIndex++;
+            // Entferne den gefunden kleinsten Bruch und dessen Vorkommen aus der Collection c
+            ptr[minIndex][0].numerator = 0;
+            ptr[minIndex][0].denominator = 0;
+            ptr[minIndex][1].numerator = 0;
 
-        // Verringere die germerkte Anzahl der Brüche der Collection c
-        rnCount--;
+            // Zeige auf den nächsten Index der Collection temp
+            tempIndex++;
+
+        }
+
     }
 
     // Übertrage alle Brüche und ihre Vorkommen der Collection temp in die Collection c
