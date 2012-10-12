@@ -7,9 +7,9 @@ bool rnIsValid(RationalNumber n) {
 
 bool rnEqual(RationalNumber n1, RationalNumber n2) {
     // Kürzen der beiden Brüche, anschliessend vergleichen
-    RationalNumber rn1 = rnShorten(n1);
-    RationalNumber rn2 = rnShorten(n2);
-    return (rn1.numerator == rn2.numerator && rn1.denominator == rn2.denominator);
+    n1 = rnShorten(n1);
+    n2 = rnShorten(n2);
+    return (n1.numerator == n2.numerator && n1.denominator == n2.denominator);
 }
 
 bool rnLessThan(RationalNumber n1, RationalNumber n2) {
@@ -101,4 +101,3 @@ int rnEUCLID(int n1, int n2) {
     }
     return n1;
 }
-

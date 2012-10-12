@@ -35,11 +35,14 @@ void rncInit(RationalNumberCollection *c) {
     // Zeiger auf Collection
     RationalNumber (*ptr)[2] = c->rn;
 
-    // Allen Arrayelemente eine RationalNumber mit Zähler- und Nennerwerten von 0 eintragen
+    // Allen Arrayelementen eine RationalNumber mit Zähler- und Nennerwerten von 0 eintragen,
+    // mit Ausnahme des Zähler-Denominators. Diese bekommen eine 1 spendiert, die für
+    // Rechenoperationen nötig ist.
     RationalNumber rn = { 0, 0 };
+    RationalNumber counter = { 0, 1 };
     for (int i=0; i<MAXSIZE; i++) {
         ptr[i][0] = rn;
-        ptr[i][1] = rn;
+        ptr[i][1] = counter;
     }
 
 }
@@ -74,55 +77,60 @@ int rncTotalCount(RationalNumberCollection *c) {
 
 }
 
-double rncSum(RationalNumberCollection *c) {
+RationalNumber rncSum(RationalNumberCollection *c) {
 
     // Zeiger auf Collection
     RationalNumber (*ptr)[2] = c->rn;
 
     // Alle Brüche in der Collection summieren
     int i = 0;
-    double result = 0;
+    RationalNumber result = { 0, 1 };
     while(ptr[i][1].numerator > 0) {
-        result += (((double)ptr[i][0].numerator / ptr[i][0].denominator) * ptr[i][1].numerator);
+        result = rnAdd(result, rnMultiply(ptr[i][0], ptr[i][1]));
         i++;
     }
-    return result;
+
+    // Gekürzte RationalNumber zurückgeben
+    return rnShorten(result);
 
 }
 
-double rncAverage(RationalNumberCollection *c) {
+RationalNumber rncAverage(RationalNumberCollection *c) {
 
     // Zeiger auf Collection
     RationalNumber (*ptr)[2] = c->rn;
 
     // Alle Brüche in der Collection zählen und sie summieren
     int i = 0;
-    int count = 0;
-    double result = 0;
+    RationalNumber count =  { 0, 1 };
+    RationalNumber result = { 0, 1 };
     while(ptr[i][1].numerator > 0) {
-        result += (((double)ptr[i][0].numerator / ptr[i][0].denominator)*ptr[i][1].numerator);
-        count += ptr[i][1].numerator;
+        result = rnAdd(result, rnMultiply(ptr[i][0], ptr[i][1]));
+        count.numerator += ptr[i][1].numerator;
         i++;
     }
 
     // Wenn keine Brüche gespeichert
-    if (count == 0) {
-        return 0;
+    if (count.numerator == 0) {
+        count.numerator = 1;
     }
 
-    // Wenn mindestens 1 Bruch gespeichert ist
-    return result/count;
+    // Gekürzte RationalNumber zurückgeben
+    return rnShorten(rnDivide(result, count));
 
 }
 
-double rncMedian(RationalNumberCollection *c) {
+RationalNumber rncMedian(RationalNumberCollection *c) {
 
     // Länge der Collection bestimmen
     int len = rncTotalUniqueCount(*(&c));
 
+    // Ergebnis RationalNumber
+    RationalNumber result = { 0, 1 };
+
     // Wenn Collection leer
     if (len == 0) {
-        return 0;
+        return result;
     }
 
     // Zeiger auf Collection
@@ -130,24 +138,26 @@ double rncMedian(RationalNumberCollection *c) {
 
     // Wenn Länge der Collection == 1
     if (len == 1) {
-        return ((double) ptr[0][0].numerator / ptr[0][0].denominator);
+        return ptr[0][0];
     }
 
     // Wenn Länge der Collection == 2
     if (len == 2) {
-        return ((((double) ptr[0][0].numerator / ptr[0][0].denominator) + ((double) ptr[1][0].numerator / ptr[1][0].denominator)) / 2);
+        RationalNumber r = { 2, 1 };
+        return rnShorten(rnDivide(rnAdd(ptr[0][0], ptr[1][0]), r));
     }
 
     // Wenn Länge der Collection gerade
     if (len%2 == 0) {
-        int lowerMedian = (len/2)-1;
-        int upperMedian = len/2;
-        return ((((double) ptr[lowerMedian][0].numerator / ptr[lowerMedian][0].denominator) + ((double) ptr[upperMedian][0].numerator / ptr[upperMedian][0].denominator)) / 2);
+        RationalNumber r = { 2, 1 };
+        int lowerMedian = (len / 2) - 1;
+        int upperMedian = len / 2;
+        return rnShorten(rnDivide(rnAdd(ptr[lowerMedian][0], ptr[upperMedian][0]), r));
     }
-    // Wenn Länger der Collection ungerade
+    // Wenn Länge der Collection ungerade
     else {
-        int median = len/2;
-        return ((double) ptr[median][0].numerator / ptr[median][0].denominator);
+        int median = len / 2;
+        return ptr[median][0];
     }
 
 }

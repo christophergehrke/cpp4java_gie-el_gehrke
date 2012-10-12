@@ -33,23 +33,23 @@ int rncTotalCount(RationalNumberCollection *c);
 /**
   * Returns the sum of all RationalNumbers of the given RationalNumberCollection.
   * @param c A pointer to the RationalNumberCollection.
-  * @return The sum of all RationalNumbers.
+  * @return The sum of all RationalNumbers as RationalNumber.
   */
-double rncSum(RationalNumberCollection *c);
+RationalNumber rncSum(RationalNumberCollection *c);
 
 /**
   * Returns the arithmetic average of all RationalNumbers of the given RationalNumberCollection.
   * @param c A pointer to the RationalNumberCollection.
-  * @return The arithmetic average of all RationalNumbers.
+  * @return The arithmetic average of all RationalNumbers as RationalNumber.
   */
-double rncAverage(RationalNumberCollection *c);
+RationalNumber rncAverage(RationalNumberCollection *c);
 
 /**
   * Returns the median of the given RationalNumberCollection.
   * @param c A pointer to the RationalNumberCollection.
-  * @return The median of the RationalNumberCollection.
+  * @return The median of the RationalNumberCollection as RationalNumber.
   */
-double rncMedian(RationalNumberCollection *c);
+RationalNumber rncMedian(RationalNumberCollection *c);
 
 /**
   * Returns the counter value of a RationalNumber of the given RationalNumberCollection.
