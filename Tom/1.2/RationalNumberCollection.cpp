@@ -27,7 +27,6 @@ int rncSearch(RationalNumberCollection *c, RationalNumber rn, int min, int max) 
     else {
         return mid;
     }
-
 }
 
 void rncInit(RationalNumberCollection *c) {
@@ -45,57 +44,42 @@ void rncInit(RationalNumberCollection *c) {
         ptr[i][1] = counter;
     }
 
+    // Setze totalUniqueCount auf 0
+    c->totalUniqueCount = 0;
+
+    // Setze totalCount auf 0
+    c->totalCount = 0;
+
+    // Setze sum auf 0/1
+    c->sum = counter;
+
+    // Setze average auf 0/1
+    c->average = counter;
+
+    // Setze median auf 0/1
+    c->median = counter;
+
 }
 
 int rncTotalUniqueCount(RationalNumberCollection *c) {
 
-    // Zeiger auf Collection
-    RationalNumber (*ptr)[2] = c->rn;
-
-    // Alle verschiedene Brüche zählen
-    int i = 0;
-    while(ptr[i][1].numerator > 0) {
-        i++;
-    }
-    return i;
+    return c->totalUniqueCount;
 
 }
 
 int rncTotalCount(RationalNumberCollection *c) {
 
-    // Zeiger auf Collection
-    RationalNumber (*ptr)[2] = c->rn;
-
-    // Alle Brüche zählen
-    int i = 0;
-    int count = 0;
-    while(ptr[i][1].numerator > 0) {
-        count += ptr[i][1].numerator;
-        i++;
-    }
-    return count;
+    return c->totalCount;
 
 }
 
 RationalNumber rncSum(RationalNumberCollection *c) {
 
-    // Zeiger auf Collection
-    RationalNumber (*ptr)[2] = c->rn;
-
-    // Alle Brüche in der Collection summieren
-    int i = 0;
-    RationalNumber result = { 0, 1 };
-    while(ptr[i][1].numerator > 0) {
-        result = rnAdd(result, rnMultiply(ptr[i][0], ptr[i][1]));
-        i++;
-    }
-
-    // Gekürzte RationalNumber zurückgeben
-    return rnShorten(result);
+    return c->sum;
 
 }
 
-RationalNumber rncAverage(RationalNumberCollection *c) {
+void rncCalcAverage(RationalNumberCollection *c) {
 
     // Zeiger auf Collection
     RationalNumber (*ptr)[2] = c->rn;
@@ -116,11 +100,17 @@ RationalNumber rncAverage(RationalNumberCollection *c) {
     }
 
     // Gekürzte RationalNumber zurückgeben
-    return rnShorten(rnDivide(result, count));
+    c->average = rnShorten(rnDivide(result, count));
 
 }
 
-RationalNumber rncMedian(RationalNumberCollection *c) {
+RationalNumber rncAverage(RationalNumberCollection *c) {
+
+    return c->average;
+
+}
+
+void rncCalcMedian(RationalNumberCollection *c) {
 
     // Länge der Collection bestimmen
     int len = rncTotalUniqueCount(*(&c));
@@ -128,7 +118,7 @@ RationalNumber rncMedian(RationalNumberCollection *c) {
     // Wenn Collection leer
     if (len == 0) {
         RationalNumber result = { 0, 1 };
-        return result;
+        c->median = result;
     }
 
     // Zeiger auf Collection
@@ -136,13 +126,13 @@ RationalNumber rncMedian(RationalNumberCollection *c) {
 
     // Wenn Länge der Collection == 1
     if (len == 1) {
-        return ptr[0][0];
+        c->median = ptr[0][0];
     }
 
     // Wenn Länge der Collection == 2
     if (len == 2) {
         RationalNumber r = { 2, 1 };
-        return rnShorten(rnDivide(rnAdd(ptr[0][0], ptr[1][0]), r));
+        c->median = rnShorten(rnDivide(rnAdd(ptr[0][0], ptr[1][0]), r));
     }
 
     // Wenn Länge der Collection gerade
@@ -150,13 +140,19 @@ RationalNumber rncMedian(RationalNumberCollection *c) {
         RationalNumber r = { 2, 1 };
         int lowerMedian = (len / 2) - 1;
         int upperMedian = len / 2;
-        return rnShorten(rnDivide(rnAdd(ptr[lowerMedian][0], ptr[upperMedian][0]), r));
+        c->median = rnShorten(rnDivide(rnAdd(ptr[lowerMedian][0], ptr[upperMedian][0]), r));
     }
     // Wenn Länge der Collection ungerade
     else {
         int median = len / 2;
-        return ptr[median][0];
+        c->median = ptr[median][0];
     }
+
+}
+
+RationalNumber rncMedian(RationalNumberCollection *c) {
+
+    return c->median;
 
 }
 
@@ -231,6 +227,9 @@ void rncSort(RationalNumberCollection *c, int len) {
             tempptr[tempIndex][0] = ptr[minIndex][0];
             tempptr[tempIndex][1].numerator = minCount;
 
+            // Erhöhe den totalUniqueCount der Collection temp
+            temp.totalUniqueCount++;
+
             // Entferne den gefunden kleinsten Bruch und dessen Vorkommen aus der Collection c
             ptr[minIndex][0].numerator = 0;
             ptr[minIndex][0].denominator = 0;
@@ -254,13 +253,13 @@ void rncSort(RationalNumberCollection *c, int len) {
 
 void rncAdd(RationalNumberCollection *c, RationalNumber rn) {
 
-    // Länge der Collection ermitteln
-    int len = rncTotalUniqueCount(*(&c));
-
     // Wenn rn ungültig -> return
     if (!rnIsValid(rn)) {
         return;
     }
+
+    // Länge der Collection ermitteln
+    int len = rncTotalUniqueCount(*(&c));
 
     // rn kürzen
     rn = rnShorten(rn);
@@ -268,23 +267,42 @@ void rncAdd(RationalNumberCollection *c, RationalNumber rn) {
     // Zeiger auf Collection
     RationalNumber (*ptr)[2] = c->rn;
 
-    // Falls Bruch bereits vorhanden, erhöhe Counter des Bruchs
+    // Falls Bruch bereits vorhanden
     int i = rncSearch(*(&c), rn, 0, len-1);
     if (i >= 0) {
+        // Erhöhe Counter des Bruchs
         ptr[i][1].numerator++;
+        // Erhöhe totalCount der Collection
+        c->totalCount++;
+        // Erhöhe sum der Collection
+        c->sum = rnShorten(rnAdd(c->sum,rn));
+        // Berechne average der Collection
+        rncCalcAverage(*(&c));
         return;
     }
 
-    // Falls nocht nicht alle Elemente des Arrays belegt sind, trage Bruch ein und erhöhe den Counter des Bruchs
+    // Falls nocht nicht alle Elemente des Arrays belegt sind
     if (len < MAXSIZE) {
+        // Trage den Bruch ein und erhöhe den Counter des Bruchs
         ptr[len][0] = rn;
         ptr[len][1].numerator++;
+        // Erhöhe totalUniqueCount der Collection
+        c->totalUniqueCount++;
+        // Erhöhe totalCount der Collection
+        c->totalCount++;
+        // Erhöhe sum der Collection
+        c->sum = rnShorten(rnAdd(c->sum,rn));
+        // Berechne average der Collection
+        rncCalcAverage(*(&c));
     }
 
     // Collection sortieren wenn Länge der Collection > 0
     if (len > 0) {
         rncSort(*(&c), len+1);
     }
+
+    // Berechne median der Collection
+    rncCalcMedian(*(&c));
 
 }
 
@@ -309,20 +327,30 @@ void rncRemove(RationalNumberCollection *c, RationalNumber rn) {
     // Zeiger auf Collection
     RationalNumber (*ptr)[2] = c->rn;
 
-    // Falls Bruch bereits vorhanden, veringere Counter des Bruchs
+    // Falls Bruch bereits vorhanden
     int i = rncSearch(*(&c), rn, 0, len-1);
     if (i >= 0) {
+        // Veringere Counter des Bruchs
         ptr[i][1].numerator--;
+        // Veringere totalCount der Collection
+        c->totalCount--;
+        // Verringere sum der Collection
+        c->sum = rnShorten(rnSubtract(c->sum,rn));
         // Wenn Counter anschließend == 0, entferne Bruch aus Collection
         if (ptr[i][1].numerator == 0) {
             ptr[i][0].numerator = 0;
             ptr[i][0].denominator = 0;
+            // Verringere totalUniqueCount der Collection
+            c->totalUniqueCount--;
             // Collection sortieren wenn Bruch nicht letzter Bruch in der Collection war
             if (len > 1) {
                rncSort(*(&c), len);
             }
+            // Berechne median der Collection
+            rncCalcMedian(*(&c));
         }
-        return;
+        // Berechne average der Collection
+        rncCalcAverage(*(&c));
     }
 
 }

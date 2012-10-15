@@ -76,7 +76,7 @@ int main() {
     cout << "Collection initiated..." << endl << endl;
     cout << "rncTotalUniqueCount()          : " << rncTotalUniqueCount(&c) << endl;
     assert(rncTotalUniqueCount(&c) == 0);
-    cout << "rncTtotalCount()               : " << rncTotalCount(&c) << endl;
+    cout << "rncTotalCount()                : " << rncTotalCount(&c) << endl;
     assert(rncTotalCount(&c) == 0);
     cout << "rncSum()                       : " << rncSum(&c).numerator << "/" << rncSum(&c).denominator << endl;
     assert(rnEqual(rncSum(&c), res1));
@@ -99,7 +99,7 @@ int main() {
     assert(rncCount(&c, rn1) == 1);
     cout << "rncTotalUniqueCount()          : " << rncTotalUniqueCount(&c) << endl;
     assert(rncTotalUniqueCount(&c) == 1);
-    cout << "rncTtotalCount()               : " << rncTotalCount(&c) << endl;
+    cout << "rncTotalCount()                : " << rncTotalCount(&c) << endl;
     assert(rncTotalCount(&c) == 1);
     cout << "rncSum()                       : " << rncSum(&c).numerator << "/" << rncSum(&c).denominator << endl;
     assert(rnEqual(rncSum(&c), rn1));
@@ -122,7 +122,7 @@ int main() {
     assert(rncCount(&c, rn1) == 2);
     cout << "rncTotalUniqueCount()          : " << rncTotalUniqueCount(&c) << endl;
     assert(rncTotalUniqueCount(&c) == 1);
-    cout << "rncTtotalCount()               : " << rncTotalCount(&c) << endl;
+    cout << "rncTotalCount()                : " << rncTotalCount(&c) << endl;
     assert(rncTotalCount(&c) == 2);
     cout << "rncSum()                       : " << rncSum(&c).numerator << "/" << rncSum(&c).denominator << endl;
     assert(rnEqual(rncSum(&c), res2));
@@ -145,7 +145,7 @@ int main() {
     assert(rncCount(&c, rn6) == 1);
     cout << "rncTotalUniqueCount()          : " << rncTotalUniqueCount(&c) << endl;
     assert(rncTotalUniqueCount(&c) == 2);
-    cout << "rncTtotalCount()               : " << rncTotalCount(&c) << endl;
+    cout << "rncTotalCount()                : " << rncTotalCount(&c) << endl;
     assert(rncTotalCount(&c) == 3);
     cout << "rncSum()                       : " << rncSum(&c).numerator << "/" << rncSum(&c).denominator << endl;
     assert(rnEqual(rncSum(&c), res2));
@@ -168,7 +168,7 @@ int main() {
     assert(rncCount(&c, rn1) == 1);
     cout << "rncTotalUniqueCount()          : " << rncTotalUniqueCount(&c) << endl;
     assert(rncTotalUniqueCount(&c) == 2);
-    cout << "rncTtotalCount()               : " << rncTotalCount(&c) << endl;
+    cout << "rncTotalCount()                : " << rncTotalCount(&c) << endl;
     assert(rncTotalCount(&c) == 2);
     cout << "rncSum()                       : " << rncSum(&c).numerator << "/" << rncSum(&c).denominator << endl;
     assert(rnEqual(rncSum(&c), rn1));
@@ -191,7 +191,7 @@ int main() {
     assert(rncCount(&c, rn4) == 1);
     cout << "rncTotalUniqueCount()          : " << rncTotalUniqueCount(&c) << endl;
     assert(rncTotalUniqueCount(&c) == 3);
-    cout << "rncTtotalCount()               : " << rncTotalCount(&c) << endl;
+    cout << "rncTotalCount()                : " << rncTotalCount(&c) << endl;
     assert(rncTotalCount(&c) == 3);
     cout << "rncSum()                       : " << rncSum(&c).numerator << "/" << rncSum(&c).denominator << endl;
     assert(rnEqual(rncSum(&c), res4));
@@ -214,7 +214,7 @@ int main() {
     assert(rncCount(&c, rn2) == 1);
     cout << "rncTotalUniqueCount()          : " << rncTotalUniqueCount(&c) << endl;
     assert(rncTotalUniqueCount(&c) == 4);
-    cout << "rncTtotalCount()               : " << rncTotalCount(&c) << endl;
+    cout << "rncTotalCount()                : " << rncTotalCount(&c) << endl;
     assert(rncTotalCount(&c) == 4);
     cout << "rncSum()                       : " << rncSum(&c).numerator << "/" << rncSum(&c).denominator << endl;
     assert(rnEqual(rncSum(&c), res6));
@@ -237,7 +237,7 @@ int main() {
     assert(rncCount(&c, rn3) == 1);
     cout << "rncTotalUniqueCount()          : " << rncTotalUniqueCount(&c) << endl;
     assert(rncTotalUniqueCount(&c) == 5);
-    cout << "rncTtotalCount()               : " << rncTotalCount(&c) << endl;
+    cout << "rncTotalCount()                : " << rncTotalCount(&c) << endl;
     assert(rncTotalCount(&c) == 5);
     cout << "rncSum()                       : " << rncSum(&c).numerator << "/" << rncSum(&c).denominator << endl;
     assert(rnEqual(rncSum(&c), res9));
@@ -260,7 +260,7 @@ int main() {
     assert(rncCount(&c, rn4) == 2);
     cout << "rncTotalUniqueCount()          : " << rncTotalUniqueCount(&c) << endl;
     assert(rncTotalUniqueCount(&c) == 5);
-    cout << "rncTtotalCount()               : " << rncTotalCount(&c) << endl;
+    cout << "rncTotalCount()                : " << rncTotalCount(&c) << endl;
     assert(rncTotalCount(&c) == 6);
     cout << "rncSum()                       : " << rncSum(&c).numerator << "/" << rncSum(&c).denominator << endl;
     assert(rnEqual(rncSum(&c), res11));
@@ -283,7 +283,7 @@ int main() {
     assert(rncCount(&c, rn5) == 2);
     cout << "rncTotalUniqueCount()          : " << rncTotalUniqueCount(&c) << endl;
     assert(rncTotalUniqueCount(&c) == 5);
-    cout << "rncTtotalCount()               : " << rncTotalCount(&c) << endl;
+    cout << "rncTotalCount()                : " << rncTotalCount(&c) << endl;
     assert(rncTotalCount(&c) == 7);
     cout << "rncSum()                       : " << rncSum(&c).numerator << "/" << rncSum(&c).denominator << endl;
     assert(rnEqual(rncSum(&c), res11));
@@ -306,7 +306,7 @@ int main() {
     assert(rncCount(&c, rn3) == 0);
     cout << "rncTotalUniqueCount()          : " << rncTotalUniqueCount(&c) << endl;
     assert(rncTotalUniqueCount(&c) == 4);
-    cout << "rncTtotalCount()               : " << rncTotalCount(&c) << endl;
+    cout << "rncTotalCount()                : " << rncTotalCount(&c) << endl;
     assert(rncTotalCount(&c) == 6);
     cout << "rncSum()                       : " << rncSum(&c).numerator << "/" << rncSum(&c).denominator << endl;
     assert(rnEqual(rncSum(&c), res14));

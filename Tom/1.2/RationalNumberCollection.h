@@ -7,6 +7,11 @@ const int MAXSIZE = 1000;
 
 struct RationalNumberCollection {
     RationalNumber rn[MAXSIZE][2];
+    int totalUniqueCount,
+        totalCount;
+    RationalNumber sum,
+                   average,
+                   median;
 };
 
 /**
