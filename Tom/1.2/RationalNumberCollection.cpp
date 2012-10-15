@@ -125,11 +125,9 @@ RationalNumber rncMedian(RationalNumberCollection *c) {
     // Länge der Collection bestimmen
     int len = rncTotalUniqueCount(*(&c));
 
-    // Ergebnis RationalNumber
-    RationalNumber result = { 0, 1 };
-
     // Wenn Collection leer
     if (len == 0) {
+        RationalNumber result = { 0, 1 };
         return result;
     }
 
