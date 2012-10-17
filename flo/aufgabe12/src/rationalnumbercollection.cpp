@@ -7,6 +7,59 @@
 #include <string>
 using namespace std;
 
+/*
+ *
+ * module internal
+ *
+ *
+ * */
+
+/* internal calculating */
+
+int rncCalculateTotalCount(RationalNumberCollection *c){
+    int count = 0;
+    for(int i = 0;i<c->length;i++){
+        count += c->rnwcar[i].count;
+    }
+    return count;
+}
+
+RationalNumber rncCalculateSum(RationalNumberCollection *c){
+    RationalNumber sum = c->rnwcar[0].n;
+    for(int i = 0;i<c->length;i++){
+        sum = rnAdd(sum, c->rnwcar[i].n);
+    }
+    return sum;
+}
+
+RationalNumber rncCalculateAverage(RationalNumberCollection *c){
+    RationalNumber num = rncSum(c),
+            denum = {rncTotalCount(c), 1},
+            average = rnDivide(num, denum);
+    return average;
+}
+
+RationalNumber rncCalculateMedian(RationalNumberCollection *c){
+    RationalNumber median,
+            num,
+            denum = {2, 1};
+    if(c->length == 1){
+        return c->rnwcar[0].n;
+    }
+    if(c->length%2 == 0){
+        num = rnAdd(c->rnwcar[(c->length/2)-1].n, c->rnwcar[c->length/2].n);
+        median = rnDivide(num, denum);
+    } else {
+        median = c->rnwcar[(c->length/2)+1].n;
+    }
+    return median;
+}
+void rncUpdateCollection(RationalNumberCollection *c){
+    c->totalCount = rncCalculateTotalCount(c);
+    c->average = rncCalculateAverage(c);
+    c->median = rncCalculateMedian(c);
+    c->sum = rncCalculateSum(c);
+}
 /*  binary search
  *  source: http://en.wikipedia.org/wiki/Binary_search_algorithm
  */
@@ -41,6 +94,13 @@ int binarySearch(RationalNumberWithCount A[], RationalNumber key, int imin, int 
 		return -1;
 }
 
+/*
+ *
+ * module external
+ *
+ *
+ * */
+
 void rncInit(RationalNumberCollection* c){
     RationalNumber rn = {0, 0};
     RationalNumberWithCount defaultValue = {rn, 0};
@@ -59,6 +119,7 @@ int rncAdd(RationalNumberCollection *c, RationalNumber n){
         // if value is allready in array
         if(rnEqual(n, c->rnwcar[i].n)){
             c->rnwcar[i].count++;
+            rncUpdateCollection(c);
             return i;
         }
         // shift right if new value is less than current [i]
@@ -69,6 +130,7 @@ int rncAdd(RationalNumberCollection *c, RationalNumber n){
             c->rnwcar[i].n = n;
             c->rnwcar[i].count = 1;
             c->length++;
+            rncUpdateCollection(c);
             return i;
         }
     }
@@ -76,6 +138,7 @@ int rncAdd(RationalNumberCollection *c, RationalNumber n){
     c->rnwcar[c->length].n = n;
     c->rnwcar[c->length].count = 1;
     c->length++;
+    rncUpdateCollection(c);
     return c->length;
 }
 int rncRemove(RationalNumberCollection *c, RationalNumber n){
@@ -93,13 +156,13 @@ int rncRemove(RationalNumberCollection *c, RationalNumber n){
             }
             c->rnwcar[c->length] = defaultValue;
             c->length--;
+            rncUpdateCollection(c);
             return 0;
         } else {
+        	rncUpdateCollection(c);
             return c->rnwcar[index].count;
         }
-        return 1;
     }
-    return -1;
 }
 int rncCount(RationalNumberCollection *c, RationalNumber n){
     RationalNumberWithCount rnwc;
@@ -117,47 +180,35 @@ int rncTotalUniqueCount(RationalNumberCollection *c){
 }
 
 int rncTotalCount(RationalNumberCollection *c){
-    int count = 0;
-    for(int i = 0;i<c->length;i++){
-        count += c->rnwcar[i].count;
-    }
-    return count;
+	return c->totalCount;
 }
 
 RationalNumber rncSum(RationalNumberCollection *c){
-    RationalNumber sum = c->rnwcar[0].n;
-    for(int i = 0;i<c->length;i++){
-        sum = rnAdd(sum, c->rnwcar[i].n);
-    }
-    return sum;
+	return c->sum;
 }
 
 RationalNumber rncAverage(RationalNumberCollection *c){
-    RationalNumber num = rncSum(c),
-            denum = {rncTotalCount(c), 1},
-            average = rnDivide(num, denum);
-    return average;
+	return c->average;
 }
 
 RationalNumber rncMedian(RationalNumberCollection *c){
-    RationalNumber median,
-            num,
-            denum = {2, 1};
-    if(c->length == 1){
-        return c->rnwcar[0].n;
-    }
-    if(c->length%2 == 0){
-        num = rnAdd(c->rnwcar[(c->length/2)-1].n, c->rnwcar[c->length/2].n);
-        median = rnDivide(num, denum);
-    } else {
-        median = c->rnwcar[(c->length/2)+1].n;
-    }
-    return median;
+	return c->median;
 }
-void showAllRnwc(RationalNumberCollection *c){
+void showRnwcStatus(RationalNumberCollection *c){
     int i = 0;
+    cout << endl;
+    cout << "Rational number collection contents:" << endl;
+    cout << "------------------------------------" << endl;
     while(c->rnwcar[i].count != 0){
-        cout << "RationalNumber #" << i << ": " << c->rnwcar[i].n.num << "/" << c->rnwcar[i].n.denum << " count: " << c->rnwcar[i].count << endl;
+        cout << "#" << i << ": " << c->rnwcar[i].n.num << "/" << c->rnwcar[i].n.denum << " (count: " << c->rnwcar[i].count << ")" << endl;
         i++;
     }
+    cout << endl;
+    cout << "Rational number collection data:" << endl;
+    cout << "------------------------------------" << endl;
+    cout << "Total unique count: " << c->length << endl;
+    cout << "Total count.......: " << c->totalCount << endl;
+    cout << "Sum...............: " << c->sum.num << "/" << c->sum.denum << endl;
+    cout << "Average...........: " << c->average.num << "/" << c->average.denum << endl;
+    cout << "Median............: " << c->median.num << "/" << c->median.denum << endl;
 }

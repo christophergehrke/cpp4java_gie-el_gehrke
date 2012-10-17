@@ -77,7 +77,7 @@ int main()
     rncAdd(&rnc, rn8);
     rncAdd(&rnc, rn9);
 
-    showAllRnwc(&rnc);
+    showRnwcStatus(&rnc);
 
     int rnIndexCount;
 
@@ -91,9 +91,9 @@ int main()
     assert(rncTotalUniqueCount(&rnc) == 5);
     assert(rncCount(&rnc, rn9) == 0);
 
-    showAllRnwc(&rnc);
+    showRnwcStatus(&rnc);
 
-    printf(" successful!\n");
+    printf("\nSuccessful!\n");
 
     return 0;
 }
