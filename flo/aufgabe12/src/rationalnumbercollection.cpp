@@ -55,10 +55,10 @@ RationalNumber rncCalculateMedian(RationalNumberCollection *c){
     return median;
 }
 void rncUpdateCollection(RationalNumberCollection *c){
+	c->sum = rncCalculateSum(c);
     c->totalCount = rncCalculateTotalCount(c);
     c->average = rncCalculateAverage(c);
     c->median = rncCalculateMedian(c);
-    c->sum = rncCalculateSum(c);
 }
 /*  binary search
  *  source: http://en.wikipedia.org/wiki/Binary_search_algorithm
@@ -105,6 +105,10 @@ void rncInit(RationalNumberCollection* c){
     RationalNumber rn = {0, 0};
     RationalNumberWithCount defaultValue = {rn, 0};
     c->length = 0;
+    c->average = rn;
+    c->median = rn;
+    c->sum = rn;
+    c->totalCount = 0;
     // set fields of array values to default value
     for(int i;i<RNC_MAX;i++){
         c->rnwcar[i] = defaultValue;

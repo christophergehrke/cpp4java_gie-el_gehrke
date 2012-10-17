@@ -44,7 +44,10 @@ int main()
     assert( rnEqual(t2, t3) );
     assert( !rnIsValid(t4) );
 
+    printf("\nSuccessful!\n");
+
     /* Part 2 - RationalNumberCollection data type */
+    printf("Performing unit tests for RationalNumberCollection...\n");
 
     RationalNumberCollection rnc;
     RationalNumber rn0 = {3, 4},
@@ -59,6 +62,8 @@ int main()
             rn9 = {5, 3};
 
     rncInit(&rnc);
+
+    showRnwcStatus(&rnc);
 
     rncAdd(&rnc, rn0);
     rncAdd(&rnc, rn0);
@@ -81,9 +86,13 @@ int main()
 
     int rnIndexCount;
 
+    cout << "\nTest if " << rn2.num << "/" << rn2.denum << " is 6 times in collection, remove" << endl;
+    cout << "it and test if it is 5 times in collection." << endl;
     assert(rncCount(&rnc, rn2) == 6);
     rnIndexCount = rncRemove(&rnc, rn2);
     assert(rncCount(&rnc, rn2) == 5);
+
+    showRnwcStatus(&rnc);
 
     assert(rncTotalUniqueCount(&rnc) == 6);
     assert(rncCount(&rnc, rn9) == 1);
