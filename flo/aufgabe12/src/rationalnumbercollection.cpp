@@ -14,6 +14,15 @@ using namespace std;
  *
  * */
 
+struct RationalNumberCollection {
+    RationalNumberWithCount rnwcar[RNC_MAX];
+    int totalCount;
+    RationalNumber sum;
+    RationalNumber average;
+    RationalNumber median;
+    int length;
+};
+
 /* internal calculating */
 
 int rncCalculateTotalCount(RationalNumberCollection *c){
@@ -25,9 +34,11 @@ int rncCalculateTotalCount(RationalNumberCollection *c){
 }
 
 RationalNumber rncCalculateSum(RationalNumberCollection *c){
-    RationalNumber sum = c->rnwcar[0].n;
+    RationalNumber sum = {0, 1};
     for(int i = 0;i<c->length;i++){
-        sum = rnAdd(sum, c->rnwcar[i].n);
+    	for(int j = 0;j<c->rnwcar[i].count;j++){
+    		sum = rnAdd(sum, c->rnwcar[i].n);
+    	}
     }
     return sum;
 }
@@ -201,6 +212,7 @@ RationalNumber rncMedian(RationalNumberCollection *c){
 void showRnwcStatus(RationalNumberCollection *c){
     int i = 0;
     cout << endl;
+    cout << "====================================" << endl;
     cout << "Rational number collection contents:" << endl;
     cout << "------------------------------------" << endl;
     while(c->rnwcar[i].count != 0){
@@ -215,4 +227,5 @@ void showRnwcStatus(RationalNumberCollection *c){
     cout << "Sum...............: " << c->sum.num << "/" << c->sum.denum << endl;
     cout << "Average...........: " << c->average.num << "/" << c->average.denum << endl;
     cout << "Median............: " << c->median.num << "/" << c->median.denum << endl;
+    cout << "====================================" << endl;
 }
