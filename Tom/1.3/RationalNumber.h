@@ -2,6 +2,9 @@
 #define RATIONALNUMBER_H
 
 
+/**
+  * Represents the RationalNumber
+  */
 struct RationalNumber {
     int numerator,
         denominator;

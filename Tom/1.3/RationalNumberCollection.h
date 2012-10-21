@@ -3,6 +3,10 @@
 
 #include "RationalNumber.h"
 
+
+/**
+  * Represents the RationalNumberCollection
+  */
 typedef struct rnc *RationalNumberCollection;
 
 /**
@@ -11,7 +15,6 @@ typedef struct rnc *RationalNumberCollection;
   * @return The RationalNumberCollection
   */
 RationalNumberCollection rncCreate(int n);
-
 
 /**
   * Deletes the given RationalNumberCollection, deallocating its memory space on the heap
