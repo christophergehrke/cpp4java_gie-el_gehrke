@@ -81,7 +81,7 @@ int main() {
     printf("rncTotalCount()            : %i\n", rncTotalCount(c));
     printf("rncSum()                   : %i/%i\n", rncSum(c).numerator, rncSum(c).denominator);
     printf("rncAverage()               : %i/%i\n", rncAverage(c).numerator, rncAverage(c).denominator);
-    printf("rncMedian()                : %i/%i\n\n", rncMedian(c).numerator, rncMedian(c).denominator);
+    printf("rncMedian()                : %i/%i\n", rncMedian(c).numerator, rncMedian(c).denominator);
     printf("rncSize()                  : %i\n\n", rncSize(c));
     printf("Collection:\n");
     rncPrint(c);
@@ -101,7 +101,7 @@ int main() {
     printf("rncTotalCount()            : %i\n", rncTotalCount(c));
     printf("rncSum()                   : %i/%i\n", rncSum(c).numerator, rncSum(c).denominator);
     printf("rncAverage()               : %i/%i\n", rncAverage(c).numerator, rncAverage(c).denominator);
-    printf("rncMedian()                : %i/%i\n\n", rncMedian(c).numerator, rncMedian(c).denominator);
+    printf("rncMedian()                : %i/%i\n", rncMedian(c).numerator, rncMedian(c).denominator);
     printf("rncSize()                  : %i\n\n", rncSize(c));
     printf("Collection:\n");
     rncPrint(c);
@@ -121,7 +121,7 @@ int main() {
     printf("rncTotalCount()            : %i\n", rncTotalCount(c));
     printf("rncSum()                   : %i/%i\n", rncSum(c).numerator, rncSum(c).denominator);
     printf("rncAverage()               : %i/%i\n", rncAverage(c).numerator, rncAverage(c).denominator);
-    printf("rncMedian()                : %i/%i\n\n", rncMedian(c).numerator, rncMedian(c).denominator);
+    printf("rncMedian()                : %i/%i\n", rncMedian(c).numerator, rncMedian(c).denominator);
     printf("rncSize()                  : %i\n\n", rncSize(c));
     printf("Collection:\n");
     rncPrint(c);
@@ -141,7 +141,7 @@ int main() {
     printf("rncTotalCount()            : %i\n", rncTotalCount(c));
     printf("rncSum()                   : %i/%i\n", rncSum(c).numerator, rncSum(c).denominator);
     printf("rncAverage()               : %i/%i\n", rncAverage(c).numerator, rncAverage(c).denominator);
-    printf("rncMedian()                : %i/%i\n\n", rncMedian(c).numerator, rncMedian(c).denominator);
+    printf("rncMedian()                : %i/%i\n", rncMedian(c).numerator, rncMedian(c).denominator);
     printf("rncSize()                  : %i\n\n", rncSize(c));
     printf("Collection:\n");
     rncPrint(c);
@@ -161,7 +161,7 @@ int main() {
     printf("rncTotalCount()            : %i\n", rncTotalCount(c));
     printf("rncSum()                   : %i/%i\n", rncSum(c).numerator, rncSum(c).denominator);
     printf("rncAverage()               : %i/%i\n", rncAverage(c).numerator, rncAverage(c).denominator);
-    printf("rncMedian()                : %i/%i\n\n", rncMedian(c).numerator, rncMedian(c).denominator);
+    printf("rncMedian()                : %i/%i\n", rncMedian(c).numerator, rncMedian(c).denominator);
     printf("rncSize()                  : %i\n\n", rncSize(c));
     printf("Collection:\n");
     rncPrint(c);
@@ -181,7 +181,7 @@ int main() {
     printf("rncTotalCount()            : %i\n", rncTotalCount(c));
     printf("rncSum()                   : %i/%i\n", rncSum(c).numerator, rncSum(c).denominator);
     printf("rncAverage()               : %i/%i\n", rncAverage(c).numerator, rncAverage(c).denominator);
-    printf("rncMedian()                : %i/%i\n\n", rncMedian(c).numerator, rncMedian(c).denominator);
+    printf("rncMedian()                : %i/%i\n", rncMedian(c).numerator, rncMedian(c).denominator);
     printf("rncSize()                  : %i\n\n", rncSize(c));
     printf("Collection:\n");
     rncPrint(c);
@@ -201,7 +201,7 @@ int main() {
     printf("rncTotalCount()            : %i\n", rncTotalCount(c));
     printf("rncSum()                   : %i/%i\n", rncSum(c).numerator, rncSum(c).denominator);
     printf("rncAverage()               : %i/%i\n", rncAverage(c).numerator, rncAverage(c).denominator);
-    printf("rncMedian()                : %i/%i\n\n", rncMedian(c).numerator, rncMedian(c).denominator);
+    printf("rncMedian()                : %i/%i\n", rncMedian(c).numerator, rncMedian(c).denominator);
     printf("rncSize()                  : %i\n\n", rncSize(c));
     printf("Collection:\n");
     rncPrint(c);
@@ -221,7 +221,7 @@ int main() {
     printf("rncTotalCount()            : %i\n", rncTotalCount(c));
     printf("rncSum()                   : %i/%i\n", rncSum(c).numerator, rncSum(c).denominator);
     printf("rncAverage()               : %i/%i\n", rncAverage(c).numerator, rncAverage(c).denominator);
-    printf("rncMedian()                : %i/%i\n\n", rncMedian(c).numerator, rncMedian(c).denominator);
+    printf("rncMedian()                : %i/%i\n", rncMedian(c).numerator, rncMedian(c).denominator);
     printf("rncSize()                  : %i\n\n", rncSize(c));
     printf("Collection:\n");
     rncPrint(c);
@@ -241,7 +241,7 @@ int main() {
     printf("rncTotalCount()            : %i\n", rncTotalCount(c));
     printf("rncSum()                   : %i/%i\n", rncSum(c).numerator, rncSum(c).denominator);
     printf("rncAverage()               : %i/%i\n", rncAverage(c).numerator, rncAverage(c).denominator);
-    printf("rncMedian()                : %i/%i\n\n", rncMedian(c).numerator, rncMedian(c).denominator);
+    printf("rncMedian()                : %i/%i\n", rncMedian(c).numerator, rncMedian(c).denominator);
     printf("rncSize()                  : %i\n\n", rncSize(c));
     printf("Collection:\n");
     rncPrint(c);
@@ -261,7 +261,7 @@ int main() {
     printf("rncTotalCount()            : %i\n", rncTotalCount(c));
     printf("rncSum()                   : %i/%i\n", rncSum(c).numerator, rncSum(c).denominator);
     printf("rncAverage()               : %i/%i\n", rncAverage(c).numerator, rncAverage(c).denominator);
-    printf("rncMedian()                : %i/%i\n\n", rncMedian(c).numerator, rncMedian(c).denominator);
+    printf("rncMedian()                : %i/%i\n", rncMedian(c).numerator, rncMedian(c).denominator);
     printf("rncSize()                  : %i\n\n", rncSize(c));
     printf("Collection:\n");
     rncPrint(c);
